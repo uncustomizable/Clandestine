@@ -1481,10 +1481,13 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Topbar.Icon.ImageRectOffset = asset.imageRectOffset
 				Topbar.Icon.ImageRectSize = asset.imageRectSize
 			elseif typeof(Settings.Icon) == "table" then
-				print("table", Settings.Icon.Custom)
+				warn("table", Settings.Icon.Custom)
+				for i, v in pairs(Settings.Icon) do
+					print(i, v)
+				end
 				Topbar.Icon.Image = Settings.Icon.Custom
 			else
-				print("not table??", typeof(Settings.Icon))
+				warn("not table??", typeof(Settings.Icon))
 				Topbar.Icon.Image = getAssetUri(Settings.Icon)
 			end
 		else
