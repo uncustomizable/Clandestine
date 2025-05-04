@@ -1,6 +1,6 @@
 if debugX then
 	warn('Initialising Rayfield')
-end
+end 
 
 local function getService(name)
 	local service = game:GetService(name)
