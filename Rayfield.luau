@@ -1480,6 +1480,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Topbar.Icon.Image = 'rbxassetid://'..asset.id
 				Topbar.Icon.ImageRectOffset = asset.imageRectOffset
 				Topbar.Icon.ImageRectSize = asset.imageRectSize
+			elseif typeof(Settings.Icon) == "table" then
+				Topbar.Icon.Image = Settings.Custom
 			else
 				Topbar.Icon.Image = getAssetUri(Settings.Icon)
 			end
@@ -2760,7 +2762,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end)
 				end
 			end
-			
+
 			SetDropdownOptions()
 
 			for _, droption in ipairs(Dropdown.List:GetChildren()) do
