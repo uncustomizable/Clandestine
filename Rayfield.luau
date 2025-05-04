@@ -2604,12 +2604,28 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Dropdown.Toggle, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Rotation = 180}):Play()	
 					task.wait(0.35)
 					Dropdown.List.Visible = false
+					if DropdownSettings.Browsing then
+						local Success, Response = pcall(function()
+							DropdownSettings.Browsing(false)
+						end)
+						if not Success then
+							print("Rayfield | "..DropdownSettings.Name.." Browsing Callback Error " ..tostring(Response))
+						end
+					end
 					Debounce = false
 				else
 					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {Size = UDim2.new(1, -10, 0, 180)}):Play()
 					Dropdown.List.Visible = true
 					TweenService:Create(Dropdown.List, TweenInfo.new(0.3, Enum.EasingStyle.Exponential), {ScrollBarImageTransparency = 0.7}):Play()
 					TweenService:Create(Dropdown.Toggle, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Rotation = 0}):Play()	
+					if DropdownSettings.Browsing then
+						local Success, Response = pcall(function()
+							DropdownSettings.Browsing(true)
+						end)
+						if not Success then
+							print("Rayfield | "..DropdownSettings.Name.." Browsing Callback Error " ..tostring(Response))
+						end
+					end
 					for _, DropdownOpt in ipairs(Dropdown.List:GetChildren()) do
 						if DropdownOpt.ClassName == "Frame" and DropdownOpt.Name ~= "Placeholder" then
 							if DropdownOpt.Name ~= Dropdown.Selected.Text then
@@ -2643,18 +2659,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 					DropdownOption.BackgroundTransparency = 1
 					DropdownOption.UIStroke.Transparency = 1
 					DropdownOption.Title.TextTransparency = 1
-
-					--local Dropdown = Tab:CreateDropdown({
-					--	Name = "Dropdown Example",
-					--	Options = {"Option 1","Option 2"},
-					--	CurrentOption = {"Option 1"},
-					--  MultipleOptions = true,
-					--	Flag = "Dropdown1",
-					--	Callback = function(TableOfOptions)
-
-					--	end,
-					--})
-
 
 					DropdownOption.Interact.ZIndex = 50
 					DropdownOption.Interact.MouseButton1Click:Connect(function()
@@ -2698,7 +2702,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 
 						local Success, Response = pcall(function()
-							DropdownSettings.Callback(DropdownSettings.CurrentOption)
+							if DropdownSettings.MultipleOptions then
+								DropdownSettings.Callback(DropdownSettings.CurrentOption)
+							else
+								DropdownSettings.Callback(DropdownSettings.CurrentOption[1])
+							end
 						end)
 
 						if not Success then
@@ -2732,6 +2740,14 @@ function RayfieldLibrary:CreateWindow(Settings)
 							TweenService:Create(Dropdown.Toggle, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {Rotation = 180}):Play()	
 							task.wait(0.35)
 							Dropdown.List.Visible = false
+							if DropdownSettings.Browsing then
+								local Success, Response = pcall(function()
+									DropdownSettings.Browsing(false)
+								end)
+								if not Success then
+									print("Rayfield | "..DropdownSettings.Name.." Browsing Callback Error " ..tostring(Response))
+								end
+							end
 						end
 						Debounce = false
 						if not DropdownSettings.Ext then
@@ -2744,6 +2760,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					end)
 				end
 			end
+			
 			SetDropdownOptions()
 
 			for _, droption in ipairs(Dropdown.List:GetChildren()) do
@@ -2834,9 +2851,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 				Dropdown.Toggle.ImageColor3 = SelectedTheme.TextColor
 				TweenService:Create(Dropdown, TweenInfo.new(0.4, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 			end)
-			
+
 			DropdownSettings.Selected = DropdownSettings.CurrentOption[1]
-			
+
 			return DropdownSettings
 		end
 
