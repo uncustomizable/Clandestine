@@ -2849,7 +2849,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and DropdownSettings.Flag then
+				if Settings.ConfigurationSaving.Enabled and DropdownSettings.Flag and not DropdownSettings.Ext then
 					RayfieldLibrary.Flags[DropdownSettings.Flag] = DropdownSettings
 				end
 			end
@@ -2982,7 +2982,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end
 
 			if Settings.ConfigurationSaving then
-				if Settings.ConfigurationSaving.Enabled and KeybindSettings.Flag then
+				if Settings.ConfigurationSaving.Enabled and KeybindSettings.Flag and not KeybindSettings.Ext then
 					RayfieldLibrary.Flags[KeybindSettings.Flag] = KeybindSettings
 				end
 			end
@@ -3136,7 +3136,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			if not ToggleSettings.Ext then
 				if Settings.ConfigurationSaving then
-					if Settings.ConfigurationSaving.Enabled and ToggleSettings.Flag then
+					if Settings.ConfigurationSaving.Enabled and ToggleSettings.Flag and not ToggleSettings.Ext then
 						RayfieldLibrary.Flags[ToggleSettings.Flag] = ToggleSettings
 					end
 				end
