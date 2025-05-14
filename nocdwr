@@ -1,3 +1,5 @@
+print("TEST LOL")
+print(cloneref)
 local v1 = cloneref(ReplicatedStorage)
 local v_u_2 = cloneref(RunService)
 local v_u_8 = require(v1.Modules.Player.Replication.EffectUtility)
