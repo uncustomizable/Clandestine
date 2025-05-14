@@ -1,8 +1,9 @@
-print("OK ANOTHER?")
-print("TEST LOL")
-print(cloneref)
-local v1 = cloneref(ReplicatedStorage)
-local v_u_2 = cloneref(RunService)
+print("OK EAEAEAEAEAEA?")
+print("TEST EAEAEAEAEAEAEEEEEEEEEEEE")
+local cloneref = getfenv().cloneref
+print(cloneref, infWallRunToggle, p_u_23, p_u_25, p_u_24)
+local v1 = cloneref(game:GetService("ReplicatedStorage"))
+local v_u_2 = cloneref(game:GetService("RunService"))
 local v_u_8 = require(v1.Modules.Player.Replication.EffectUtility)
 local v_u_6 = require(v1.Modules.Shared.Utilities.Utility)
 if p_u_23:CanActivate() then
@@ -37,7 +38,7 @@ if p_u_23:CanActivate() then
 		end)
 		local v_u_40 = nil
 		task.spawn(function()
-			v_u_40 = v_u_8.EmitEffects(ReplicatedStorage.Modules.Player.Character.Combat.ClientHandlers.WallRun.Run, v_u_28)
+			v_u_40 = v_u_8.EmitEffects(v1.Modules.Player.Character.Combat.ClientHandlers.WallRun.Run, v_u_28)
 		end)
 		local v_u_41 = 0
 		local v_u_42 = false
@@ -84,7 +85,7 @@ if p_u_23:CanActivate() then
 			p_u_23.Animations["Jump" .. v_u_31]:Play()
 			p_u_23.Combat:ResetJumpFatigue()
 			task.spawn(function()
-				v_u_8.EmitEffects(ReplicatedStorage.Modules.Player.Character.Combat.ClientHandlers.WallRun.Jump, v_u_28)
+				v_u_8.EmitEffects(v1.Modules.Player.Character.Combat.ClientHandlers.WallRun.Jump, v_u_28)
 			end)
 			local v_u_48 = false
 			local function v_u_51(p49)
