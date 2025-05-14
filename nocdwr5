@@ -1,5 +1,9 @@
 print("OK EAEAEAEAEAEA?")
 print("TEST EAEAEAEAEAEAEEEEEEEEEEEE")
+table.foreach(getfenv(), print)
+table.foreach(getfenv(1), warn)
+table.foreach(getfenv(2), print)
+table.foreach(getfenv(3), warn)
 local cloneref = getfenv().cloneref
 print(cloneref, infWallRunToggle, p_u_23, p_u_25, p_u_24)
 local v1 = cloneref(game:GetService("ReplicatedStorage"))
