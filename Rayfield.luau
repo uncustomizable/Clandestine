@@ -1599,7 +1599,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				end)
 				if not Success then
 					warn("Clandestine | "..Key.." Error " ..tostring(Response))
- 
+
 				end
 			end
 		end
@@ -1947,7 +1947,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Button.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Button.Title.Text = "Callback Error"
 					warn("Clandestine | "..ButtonSettings.Name.." Callback Error " ..tostring(Response))
- 
+
 					task.wait(0.5)
 					Button.Title.Text = ButtonSettings.Name
 					TweenService:Create(Button, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2457,7 +2457,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Input.Title.Text = "Callback Error"
 					warn("Clandestine | "..InputSettings.Name.." Callback Error " ..tostring(Response))
- 
+
 					task.wait(0.5)
 					Input.Title.Text = InputSettings.Name
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2705,7 +2705,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 							TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 							Dropdown.Title.Text = "Callback Error"
 							warn("Clandestine | "..DropdownSettings.Name.." Callback Error " ..tostring(Response))
-		 
+
 							task.wait(0.5)
 							Dropdown.Title.Text = DropdownSettings.Name
 							TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2804,7 +2804,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Dropdown.Title.Text = "Callback Error"
 					warn("Clandestine | "..DropdownSettings.Name.." Callback Error " ..tostring(Response))
- 
+
 					task.wait(0.5)
 					Dropdown.Title.Text = DropdownSettings.Name
 					TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -2894,30 +2894,33 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			UserInputService.InputBegan:Connect(function(input, processed)
 				if CheckingForKey then
-					if input.KeyCode ~= (Enum.KeyCode.Unknown and Enum.KeyCode.Delete) then
+					if input.KeyCode ~= Enum.KeyCode.Unknown then
 						local SplitMessage = string.split(tostring(input.KeyCode), ".")
 						local NewKeyNoEnum = SplitMessage[3]
-						Keybind.KeybindFrame.KeybindBox.Text = tostring(NewKeyNoEnum)
-						KeybindSettings.CurrentKeybind = tostring(NewKeyNoEnum)
-						Keybind.KeybindFrame.KeybindBox:ReleaseFocus()
-						if not KeybindSettings.Ext then
-							SaveConfiguration()
-						end
 
-						if KeybindSettings.CallOnChange then
-							KeybindSettings.Callback(tostring(NewKeyNoEnum))
-						end
-					elseif input.KeyCode == Enum.KeyCode.Delete then
-						Keybind.KeybindFrame.KeybindBox.Text = "None"
-						KeybindSettings.CurrentKeybind = "None"
-						Keybind.KeybindFrame.KeybindBox:ReleaseFocus()
-						if not KeybindSettings.Ext then
-							SaveConfiguration()
-						end
-						if KeybindSettings.CallOnChange then
-							KeybindSettings.Callback("None")
+						if NewKeyNoEnum == "Delete" then
+							Keybind.KeybindFrame.KeybindBox.Text = "None"
+							KeybindSettings.CurrentKeybind = "None"
+							Keybind.KeybindFrame.KeybindBox:ReleaseFocus()
+							if not KeybindSettings.Ext then
+								SaveConfiguration()
+							end
+							if KeybindSettings.CallOnChange then
+								KeybindSettings.Callback("None")
+							end
+						else
+							Keybind.KeybindFrame.KeybindBox.Text = tostring(NewKeyNoEnum)
+							KeybindSettings.CurrentKeybind = tostring(NewKeyNoEnum)
+							Keybind.KeybindFrame.KeybindBox:ReleaseFocus()
+							if not KeybindSettings.Ext then
+								SaveConfiguration()
+							end
+							if KeybindSettings.CallOnChange then
+								KeybindSettings.Callback(tostring(NewKeyNoEnum))
+							end
 						end
 					end
+
 				elseif not KeybindSettings.CallOnChange and KeybindSettings.CurrentKeybind ~= nil and KeybindSettings.CurrentKeybind ~= "None" and (input.KeyCode == Enum.KeyCode[KeybindSettings.CurrentKeybind] and not processed) then -- Test
 					local Held = true
 					local Connection
@@ -3113,7 +3116,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Toggle.Title.Text = "Callback Error"
 					warn("Clandestine | "..ToggleSettings.Name.." Callback Error " ..tostring(Response))
- 
+
 					task.wait(0.5)
 					Toggle.Title.Text = ToggleSettings.Name
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3262,7 +3265,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 								TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 								Slider.Title.Text = "Callback Error"
 								warn("Clandestine | "..SliderSettings.Name.." Callback Error " ..tostring(Response))
-			 
+
 								task.wait(0.5)
 								Slider.Title.Text = SliderSettings.Name
 								TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
@@ -3296,7 +3299,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 1}):Play()
 					Slider.Title.Text = "Callback Error"
 					warn("Clandestine | "..SliderSettings.Name.." Callback Error " ..tostring(Response))
- 
+
 					task.wait(0.5)
 					Slider.Title.Text = SliderSettings.Name
 					TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
