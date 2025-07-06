@@ -1831,8 +1831,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 			TabButton.Size = UDim2.new(0, TabButton.Title.TextBounds.X + 52, 0, 30)
 		end
 
-
-
 		TabButton.BackgroundTransparency = 1
 		TabButton.Title.TextTransparency = 1
 		TabButton.Image.ImageTransparency = 1
@@ -1892,7 +1890,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 			TweenService:Create(TabButton, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {BackgroundTransparency = 0}):Play()
 			TweenService:Create(TabButton.Title, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {TextTransparency = 0}):Play()
 		end
-
 
 		TabButton.Interact.MouseButton1Click:Connect(function()
 			if Minimised then return end
@@ -2993,12 +2990,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 		-- Toggle
 		function Tab:CreateToggle(ToggleSettings)
 			local ToggleValue = {}
-
-			print("OMGGG IM CLONING A SCREEN GUI THATS SO CRARY!!!!!!!")
-			setthreadcontext(8)
+			
+			setthreadidentity(8)
 			local Toggle = Elements.Template.Toggle:Clone()
-			print("OMG I JUST CLONED IT, NO WAYYYYYY!!!!!!!!!!!!")
-			warn("EEEEEEEEEEEEEEEEEEEEEEEEE")
 			Toggle.Name = ToggleSettings.Name
 			Toggle.Title.Text = ToggleSettings.Name
 			Toggle.Visible = true
