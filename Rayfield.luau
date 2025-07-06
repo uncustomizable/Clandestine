@@ -2995,6 +2995,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			local ToggleValue = {}
 
 			print("OMGGG IM CLONING A SCREEN GUI THATS SO CRARY!!!!!!!")
+			setthreadcontext(8)
 			local Toggle = Elements.Template.Toggle:Clone()
 			print("OMG I JUST CLONED IT, NO WAYYYYYY!!!!!!!!!!!!")
 			warn("EEEEEEEEEEEEEEEEEEEEEEEEE")
