@@ -2994,7 +2994,10 @@ function RayfieldLibrary:CreateWindow(Settings)
 		function Tab:CreateToggle(ToggleSettings)
 			local ToggleValue = {}
 
+			print("OMGGG IM CLONING A SCREEN GUI THATS SO CRARY!!!!!!!")
 			local Toggle = Elements.Template.Toggle:Clone()
+			print("OMG I JUST CLONED IT, NO WAYYYYYY!!!!!!!!!!!!")
+			warn("EEEEEEEEEEEEEEEEEEEEEEEEE")
 			Toggle.Name = ToggleSettings.Name
 			Toggle.Title.Text = ToggleSettings.Name
 			Toggle.Visible = true
