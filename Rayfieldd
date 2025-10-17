@@ -1573,11 +1573,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 	-- Tab
 	local FirstTab = false
 	local Window = {}
-	function Window:CreateTab(Name, Image, Ext)
+	function Window:CreateTab(Name, Image, Ext, Text)
 		local SDone = false
 		local TabButton = TabList.Template:Clone()
 		TabButton.Name = Name
-		TabButton.Title.Text = Name
+		TabButton.Title.Text = Text or Name
 		TabButton.Parent = TabList
 		TabButton.Title.TextWrapped = false
 		TabButton.Size = UDim2.new(0, TabButton.Title.TextBounds.X + 30, 0, 30)
@@ -1693,7 +1693,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		function Tab:CreateButton(ButtonSettings)
 			local Button = Elements.Template.Button:Clone()
 			Button.Name = ButtonSettings.Name
-			Button.Title.Text = ButtonSettings.Name
+			Button.Title.Text = ButtonSettings.Text or ButtonSettings.Name
 			Button.Visible = true
 			Button.Parent = TabPage
 
@@ -1715,7 +1715,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					warn("Clandestine | "..ButtonSettings.Name.." Callback Error " ..tostring(Response))
 
 					task.wait(0.5)
-					Button.Title.Text = ButtonSettings.Name
+					Button.Title.Text = ButtonSettings.Text or ButtonSettings.Name
 					TweenService:Create(Button, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Button.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {TextTransparency = 0.9}):Play()
 					TweenService:Create(Button.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
@@ -1745,8 +1745,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 				TweenService:Create(Button.ElementIndicator, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {TextTransparency = 0.9}):Play()
 			end)
 
-			function ButtonSettings:Set(NewButton)
-				Button.Title.Text = NewButton
+			function ButtonSettings:Set(NewButton, Text)
+				Button.Title.Text = Text or NewButton
 				Button.Name = NewButton
 			end
 
@@ -1767,7 +1767,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			local Slider = ColorPicker.ColorSlider
 			ColorPicker.ClipsDescendants = true
 			ColorPicker.Name = ColorPickerSettings.Name
-			ColorPicker.Title.Text = ColorPickerSettings.Name
+			ColorPicker.Title.Text = ColorPickerSettings.Text or ColorPickerSettings.Name
 			ColorPicker.Visible = true
 			ColorPicker.Parent = TabPage
 			ColorPicker.Size = UDim2.new(1, -10, 0, 45)
@@ -2192,7 +2192,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 		function Tab:CreateInput(InputSettings)
 			local Input = Elements.Template.Input:Clone()
 			Input.Name = InputSettings.Name
-			Input.Title.Text = InputSettings.Name
+			Input.Title.Text = InputSettings.Text or InputSettings.Name
 			Input.Visible = true
 			Input.Parent = TabPage
 
@@ -2225,7 +2225,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					warn("Clandestine | "..InputSettings.Name.." Callback Error " ..tostring(Response))
 
 					task.wait(0.5)
-					Input.Title.Text = InputSettings.Name
+					Input.Title.Text = InputSettings.Text or InputSettings.Name
 					TweenService:Create(Input, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Input.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 				end
@@ -2286,7 +2286,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			else
 				Dropdown.Name = DropdownSettings.Name
 			end
-			Dropdown.Title.Text = DropdownSettings.Name
+			Dropdown.Title.Text = DropdownSettings.Text or DropdownSettings.Name
 			Dropdown.Visible = true
 			Dropdown.Parent = TabPage
 
@@ -2473,7 +2473,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 							warn("Clandestine | "..DropdownSettings.Name.." Callback Error " ..tostring(Response))
 
 							task.wait(0.5)
-							Dropdown.Title.Text = DropdownSettings.Name
+							Dropdown.Title.Text = DropdownSettings.Text or DropdownSettings.Name
 							TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 							TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 						end
@@ -2572,7 +2572,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					warn("Clandestine | "..DropdownSettings.Name.." Callback Error " ..tostring(Response))
 
 					task.wait(0.5)
-					Dropdown.Title.Text = DropdownSettings.Name
+					Dropdown.Title.Text = DropdownSettings.Text or DropdownSettings.Name
 					TweenService:Create(Dropdown, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Dropdown.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 				end
@@ -2619,7 +2619,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			local CheckingForKey = false
 			local Keybind = Elements.Template.Keybind:Clone()
 			Keybind.Name = KeybindSettings.Name
-			Keybind.Title.Text = KeybindSettings.Name
+			Keybind.Title.Text = KeybindSettings.Text or KeybindSettings.Name
 			Keybind.Visible = true
 			Keybind.Parent = TabPage
 
@@ -2705,7 +2705,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 							Keybind.Title.Text = "Callback Error"
 							warn("Clandestine | "..KeybindSettings.Name.." Callback Error " ..tostring(Response))
 							task.wait(0.5)
-							Keybind.Title.Text = KeybindSettings.Name
+							Keybind.Title.Text = KeybindSettings.Text or KeybindSettings.Name
 							TweenService:Create(Keybind, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 							TweenService:Create(Keybind.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 						end
@@ -2762,7 +2762,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 			local Toggle = Elements.Template.Toggle:Clone()
 			Toggle.Name = ToggleSettings.Name
-			Toggle.Title.Text = ToggleSettings.Name
+			Toggle.Title.Text = ToggleSettings.Text or ToggleSettings.Name
 			Toggle.Visible = true
 			Toggle.Parent = TabPage
 
@@ -2834,7 +2834,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					Toggle.Title.Text = "Callback Error"
 					warn("Clandestine | "..ToggleSettings.Name.." Callback Error " ..tostring(Response))
 					task.wait(0.5)
-					Toggle.Title.Text = ToggleSettings.Name
+					Toggle.Title.Text = ToggleSettings.Text or ToggleSettings.Name
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 				end
@@ -2884,7 +2884,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					warn("Clandestine | "..ToggleSettings.Name.." Callback Error " ..tostring(Response))
 
 					task.wait(0.5)
-					Toggle.Title.Text = ToggleSettings.Name
+					Toggle.Title.Text = ToggleSettings.Text or ToggleSettings.Name
 					TweenService:Create(Toggle, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Toggle.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 				end
@@ -2931,7 +2931,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			local SLDragging = false
 			local Slider = Elements.Template.Slider:Clone()
 			Slider.Name = SliderSettings.Name
-			Slider.Title.Text = SliderSettings.Name
+			Slider.Title.Text = SliderSettings.Text or SliderSettings.Name
 			Slider.Visible = true
 			Slider.Parent = TabPage
 
@@ -3033,7 +3033,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 								warn("Clandestine | "..SliderSettings.Name.." Callback Error " ..tostring(Response))
 
 								task.wait(0.5)
-								Slider.Title.Text = SliderSettings.Name
+								Slider.Title.Text = SliderSettings.Text or SliderSettings.Name
 								TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 								TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 							end
@@ -3067,7 +3067,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 					warn("Clandestine | "..SliderSettings.Name.." Callback Error " ..tostring(Response))
 
 					task.wait(0.5)
-					Slider.Title.Text = SliderSettings.Name
+					Slider.Title.Text = SliderSettings.Text or SliderSettings.Name
 					TweenService:Create(Slider, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {BackgroundColor3 = SelectedTheme.ElementBackground}):Play()
 					TweenService:Create(Slider.UIStroke, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {Transparency = 0}):Play()
 				end
